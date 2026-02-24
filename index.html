@@ -1,0 +1,934 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>☠ VOID EATS SOULS — U Doim Shu Yerda Edi ☠</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Nosifer&family=Eater&family=Creepster&family=Special+Elite&family=Abril+Fatface&display=swap');
+
+:root {
+  --blood: #8b0000;
+  --blood2: #cc0000;
+  --blood3: #ff1a1a;
+  --void: #000;
+  --bone: #c9b99a;
+  --fog: #0a0005;
+  --green: #1a3300;
+  --greenlight: #33ff00;
+  --dim: #1a0000;
+}
+
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+
+body {
+  background:#000;
+  color:var(--bone);
+  font-family:'Special Elite',cursive;
+  overflow-x:hidden;
+  cursor:none;
+}
+
+/* CURSOR */
+#cur{position:fixed;width:24px;height:24px;border:2px solid #ff0000;border-radius:50%;pointer-events:none;z-index:99999;transform:translate(-50%,-50%);transition:transform 0.1s;mix-blend-mode:screen;box-shadow:0 0 10px #ff0000,0 0 20px #8b0000;}
+#cur2{position:fixed;width:6px;height:6px;background:#ff0000;border-radius:50%;pointer-events:none;z-index:99998;transform:translate(-50%,-50%);}
+
+/* BLINK */
+#blink{position:fixed;top:0;left:0;width:100%;height:100%;background:#000;z-index:9990;pointer-events:none;opacity:0;animation:blink-anim 12s infinite;}
+@keyframes blink-anim{0%,88%,100%{opacity:0}90%,92%{opacity:1}91%,93%{opacity:0}94%,95%{opacity:1}95.5%{opacity:0}}
+
+/* NOISE */
+body::before{content:'';position:fixed;top:-50%;left:-50%;width:200%;height:200%;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.05'/%3E%3C/svg%3E");pointer-events:none;z-index:200;opacity:0.12;animation:ns 0.08s steps(1) infinite;}
+@keyframes ns{0%{transform:translate(0,0)}20%{transform:translate(-3px,2px)}40%{transform:translate(3px,-2px)}60%{transform:translate(-2px,-3px)}80%{transform:translate(2px,3px)}100%{transform:translate(-1px,1px)}}
+
+/* BLOOD LINE */
+.blood-line{position:fixed;top:0;left:0;width:100%;height:3px;background:linear-gradient(90deg,transparent,#8b0000,#ff0000,#8b0000,transparent);z-index:9000;animation:blood-drip-top 4s ease-in-out infinite;}
+@keyframes blood-drip-top{0%,100%{height:3px;box-shadow:0 0 10px #8b0000}50%{height:8px;box-shadow:0 0 30px #ff0000}}
+
+/* VIGNETTE */
+body::after{content:'';position:fixed;top:0;left:0;width:100%;height:100%;background:radial-gradient(ellipse at center,transparent 40%,rgba(0,0,0,0.9) 100%);pointer-events:none;z-index:100;}
+
+/* NAV */
+nav{position:fixed;top:3px;left:0;width:100%;z-index:5000;padding:15px 50px;display:flex;align-items:center;justify-content:space-between;background:linear-gradient(180deg,rgba(0,0,0,0.95),transparent);}
+.nav-logo{font-family:'Nosifer',cursive;font-size:1.8rem;color:var(--blood3);text-decoration:none;filter:drop-shadow(0 0 15px #ff0000);animation:flick 6s infinite;}
+@keyframes flick{0%,96%,100%{opacity:1}97%,98%{opacity:0.2}97.5%,98.5%{opacity:1}99%{opacity:0}}
+.nav-links{display:flex;gap:25px;list-style:none;}
+.nav-links a{font-family:'Eater',cursive;color:#555;text-decoration:none;font-size:0.85rem;letter-spacing:3px;text-transform:uppercase;transition:all 0.3s;}
+.nav-links a:hover{color:#ff0000;text-shadow:0 0 15px #ff0000;}
+
+/* ═══ HERO ═══ */
+#hero{position:relative;height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;overflow:hidden;background:radial-gradient(ellipse at 50% 60%,#1a0000 0%,#000 80%);}
+#hero-bg{position:absolute;top:0;left:0;width:100%;height:100%;overflow:hidden;}
+.h-lines{position:absolute;top:0;left:0;width:100%;height:100%;background:repeating-linear-gradient(0deg,transparent,transparent 3px,rgba(139,0,0,0.04) 3px,rgba(139,0,0,0.04) 4px);animation:scan 8s linear infinite;}
+@keyframes scan{from{background-position:0 0}to{background-position:0 200px}}
+
+.hero-title{font-family:'Nosifer',cursive;font-size:clamp(3rem,11vw,10rem);color:transparent;background:linear-gradient(180deg,#ff3333 0%,#cc0000 30%,#8b0000 60%,#330000 100%);-webkit-background-clip:text;background-clip:text;text-align:center;position:relative;z-index:10;filter:drop-shadow(0 0 40px #ff0000) drop-shadow(0 0 80px #8b0000);animation:htitle 0.3s infinite,flick 4s infinite;letter-spacing:6px;line-height:1.05;}
+@keyframes htitle{0%,100%{transform:skewX(0) skewY(0)}30%{transform:skewX(-1deg) skewY(0.5deg)}60%{transform:skewX(0.5deg) skewY(-0.5deg)}}
+
+.hero-sub{font-family:'Eater',cursive;font-size:clamp(0.8rem,2.5vw,1.5rem);color:#5a0000;letter-spacing:10px;text-transform:uppercase;margin-top:15px;z-index:10;position:relative;animation:sub-pulse 3s infinite;}
+@keyframes sub-pulse{0%,100%{color:#3d0000;text-shadow:none}50%{color:#cc0000;text-shadow:0 0 25px #cc0000}}
+
+.hero-warning{font-family:'Creepster',cursive;font-size:1rem;color:#ff0000;margin-top:25px;letter-spacing:5px;z-index:10;position:relative;animation:warn 1.5s infinite;}
+@keyframes warn{0%,100%{opacity:1}50%{opacity:0.2}}
+
+/* FLOATING EYES */
+.f-eye{position:absolute;font-size:2.5rem;opacity:0;animation:eye-appear linear infinite;}
+@keyframes eye-appear{0%{opacity:0;transform:scale(0.5) rotate(0deg)}10%{opacity:0.3}50%{opacity:0.4;transform:scale(1) rotate(180deg)}90%{opacity:0.2}100%{opacity:0;transform:scale(0.3) rotate(360deg)}}
+
+/* DRIP CONTAINER */
+#drips{position:absolute;top:0;left:0;width:100%;height:100%;pointer-events:none;}
+.drip{position:absolute;top:-30px;border-radius:0 0 50% 50%;background:linear-gradient(to bottom,#660000,#cc0000,#ff0000aa);animation:drip-fall linear infinite;}
+@keyframes drip-fall{0%{top:-30px;opacity:0}5%{opacity:1}85%{opacity:0.7}100%{top:110vh;opacity:0}}
+
+/* SCROLL HINT */
+.s-hint{position:absolute;bottom:25px;left:50%;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:8px;animation:s-hint-anim 2s infinite;}
+@keyframes s-hint-anim{0%,100%{opacity:0;transform:translateX(-50%) translateY(5px)}50%{opacity:0.6;transform:translateX(-50%) translateY(0)}}
+.s-hint span{font-size:0.7rem;letter-spacing:5px;color:#333;}
+.s-hint .arr{font-size:1.5rem;color:#8b0000;}
+
+/* ═══ TICKER ═══ */
+.ticker-wrap{overflow:hidden;padding:12px 0;border-top:1px solid #1a0000;border-bottom:1px solid #1a0000;}
+.ticker-wrap:nth-child(even){background:#080000;}
+.ticker-inner{display:inline-block;white-space:nowrap;animation:tick 25s linear infinite;}
+.ticker-wrap:nth-child(even) .ticker-inner{animation-direction:reverse;animation-duration:20s;}
+.ticker-inner span{font-family:'Eater',cursive;font-size:1.1rem;letter-spacing:6px;color:#2a0000;padding:0 30px;}
+.ticker-wrap:hover .ticker-inner span{color:#8b0000;}
+@keyframes tick{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+
+/* ═══ SECTION BASE ═══ */
+section{padding:90px 50px;position:relative;overflow:hidden;}
+.s-title{font-family:'Eater',cursive;font-size:clamp(2rem,5vw,3.5rem);color:var(--blood2);text-align:center;margin-bottom:15px;filter:drop-shadow(0 0 20px #8b0000);animation:glow 3s infinite;}
+@keyframes glow{0%,100%{filter:drop-shadow(0 0 15px #8b0000)}50%{filter:drop-shadow(0 0 35px #ff0000) drop-shadow(0 0 60px #8b0000)}}
+.s-divider{width:200px;height:1px;background:linear-gradient(90deg,transparent,#8b0000,transparent);margin:0 auto 60px;position:relative;}
+.s-divider::after{content:'☠';position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);background:#000;padding:0 15px;color:#8b0000;font-size:1.2rem;}
+
+/* ═══ HORROR STORIES ═══ */
+#stories{background:linear-gradient(180deg,#000 0%,#080000 50%,#000 100%);}
+.stories-grid{display:grid;grid-template-columns:1fr;gap:0;max-width:900px;margin:0 auto;}
+.story-card{border-left:3px solid #1a0000;padding:40px 40px 40px 50px;position:relative;transition:all 0.4s;cursor:default;}
+.story-card:hover{border-left-color:#cc0000;background:rgba(139,0,0,0.05);}
+.story-card::before{content:'';position:absolute;left:-3px;top:0;width:3px;height:0;background:#ff0000;transition:height 0.4s;}
+.story-card:hover::before{height:100%;}
+.story-num{font-family:'Nosifer',cursive;font-size:5rem;color:#1a0000;position:absolute;left:-10px;top:20px;line-height:1;z-index:0;transition:color 0.3s;}
+.story-card:hover .story-num{color:#3d0000;}
+.story-content{position:relative;z-index:1;}
+.story-tag{font-family:'Eater',cursive;font-size:0.75rem;color:#8b0000;letter-spacing:5px;text-transform:uppercase;margin-bottom:10px;display:block;}
+.story-title{font-family:'Abril Fatface',cursive;font-size:clamp(1.5rem,3vw,2.2rem);color:#cc0000;margin-bottom:15px;line-height:1.2;}
+.story-card:hover .story-title{color:#ff3333;text-shadow:0 0 20px rgba(255,0,0,0.4);}
+.story-text{font-size:1rem;color:#666;line-height:1.9;margin-bottom:15px;}
+.story-text em{color:#8b0000;font-style:normal;font-weight:bold;}
+.story-meta{display:flex;gap:20px;font-size:0.75rem;color:#333;letter-spacing:3px;}
+.story-meta span{text-transform:uppercase;}
+.story-read-more{color:#8b0000;font-family:'Eater',cursive;font-size:0.85rem;letter-spacing:3px;cursor:pointer;transition:color 0.3s;display:inline-block;margin-top:10px;text-transform:uppercase;}
+.story-read-more:hover{color:#ff3333;text-shadow:0 0 10px #ff0000;}
+.story-extra{max-height:0;overflow:hidden;transition:max-height 0.6s ease;color:#555;font-size:0.95rem;line-height:1.9;}
+.story-extra.open{max-height:800px;}
+.story-extra p{padding-top:15px;}
+.story-sep{border:none;border-top:1px solid #0d0000;margin:0;}
+
+/* ═══ FACTS SECTION ═══ */
+#facts{background:#000;border-top:1px solid #0d0000;}
+.facts-container{max-width:1000px;margin:0 auto;}
+.fact-item{display:grid;grid-template-columns:80px 1fr;gap:30px;padding:35px 0;border-bottom:1px solid #0d0000;align-items:start;}
+.fact-item:last-child{border-bottom:none;}
+.fact-icon{font-size:3rem;text-align:center;animation:icon-float 3s ease-in-out infinite;}
+@keyframes icon-float{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}
+.fact-icon-delay1{animation-delay:0.5s}
+.fact-icon-delay2{animation-delay:1s}
+.fact-icon-delay3{animation-delay:1.5s}
+.fact-icon-delay4{animation-delay:2s}
+.fact-icon-delay5{animation-delay:0.3s}
+.fact-title{font-family:'Eater',cursive;font-size:1.3rem;color:#cc0000;margin-bottom:8px;}
+.fact-body{color:#555;line-height:1.8;font-size:0.95rem;}
+.fact-body em{color:#8b0000;font-style:normal;}
+.fact-source{font-size:0.7rem;color:#2a0000;letter-spacing:3px;margin-top:8px;text-transform:uppercase;}
+
+/* ═══ HORROR CARDS ═══ */
+#horrors{background:radial-gradient(ellipse at center,#0d0000 0%,#000 100%);}
+.cards-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:2px;max-width:1200px;margin:0 auto;}
+.h-card{background:#060000;padding:40px 30px;position:relative;overflow:hidden;cursor:pointer;border:1px solid #0d0000;transition:all 0.3s;}
+.h-card::after{content:'';position:absolute;bottom:0;left:0;width:0;height:2px;background:var(--blood2);transition:width 0.4s;}
+.h-card:hover::after{width:100%;}
+.h-card:hover{background:#0d0000;border-color:#3d0000;}
+.h-card-icon{font-size:3.5rem;margin-bottom:20px;display:block;filter:grayscale(0.3);}
+.h-card-title{font-family:'Eater',cursive;font-size:1.4rem;color:#8b0000;margin-bottom:12px;transition:color 0.3s;}
+.h-card:hover .h-card-title{color:#ff3333;}
+.h-card-text{color:#4a4a4a;line-height:1.7;font-size:0.9rem;}
+.h-card-num{position:absolute;top:15px;right:15px;font-family:'Nosifer',cursive;font-size:2rem;color:#0d0000;transition:color 0.3s;}
+.h-card:hover .h-card-num{color:#1a0000;}
+
+/* ═══ GLITCH GALLERY ═══ */
+#gallery{background:#000;}
+.g-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:3px;max-width:1100px;margin:0 auto;}
+.g-item{aspect-ratio:1;background:#080000;border:1px solid #0d0000;display:flex;flex-direction:column;align-items:center;justify-content:center;cursor:pointer;position:relative;overflow:hidden;transition:all 0.3s;}
+.g-item:hover{border-color:#8b0000;box-shadow:0 0 30px rgba(139,0,0,0.4);}
+.g-item:hover .g-glyph{animation:glitch-icon 0.15s infinite;}
+@keyframes glitch-icon{0%{transform:translate(0);filter:none}25%{transform:translate(-3px,2px);filter:hue-rotate(90deg) saturate(3)}50%{transform:translate(3px,-2px);filter:hue-rotate(270deg)}75%{transform:translate(-2px,-3px);filter:hue-rotate(180deg)}100%{transform:translate(0);filter:none}}
+.g-glyph{font-size:3.5rem;animation:icon-float 2s ease-in-out infinite;}
+.g-label{font-family:'Eater',cursive;font-size:0.7rem;color:#2a0000;letter-spacing:3px;margin-top:10px;text-transform:uppercase;transition:color 0.3s;}
+.g-item:hover .g-label{color:#8b0000;}
+.g-overlay{position:absolute;top:0;left:0;right:0;bottom:0;background:rgba(139,0,0,0);transition:background 0.3s;}
+.g-item:hover .g-overlay{background:rgba(139,0,0,0.15);}
+
+/* ═══ STATS ═══ */
+#stats-sec{background:linear-gradient(180deg,#000,#080000,#000);}
+.stats-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:2px;max-width:1000px;margin:0 auto;}
+.stat-box{padding:40px 20px;text-align:center;background:#060000;border:1px solid #0d0000;position:relative;overflow:hidden;}
+.stat-box::before{content:'';position:absolute;top:-50%;left:-50%;width:200%;height:200%;background:radial-gradient(circle,rgba(139,0,0,0.05) 0%,transparent 70%);animation:stat-bg 4s ease-in-out infinite;}
+@keyframes stat-bg{0%,100%{opacity:0.5}50%{opacity:1}}
+.stat-n{font-family:'Nosifer',cursive;font-size:3.5rem;color:#cc0000;display:block;filter:drop-shadow(0 0 15px #8b0000);position:relative;z-index:1;}
+.stat-l{font-size:0.7rem;color:#3d0000;letter-spacing:4px;text-transform:uppercase;margin-top:8px;display:block;position:relative;z-index:1;}
+
+/* ═══ COUNTDOWN ═══ */
+#cd-sec{background:radial-gradient(ellipse at 50% 50%,#0d0000 0%,#000 100%);text-align:center;padding:100px 40px;}
+.cd-title{font-family:'Nosifer',cursive;font-size:clamp(1rem,3vw,1.8rem);color:#8b0000;letter-spacing:4px;margin-bottom:10px;animation:warn 2s infinite;}
+.cd-sub{font-family:'Creepster',cursive;font-size:1rem;color:#3d0000;letter-spacing:6px;margin-bottom:50px;}
+.cd-display{display:flex;gap:20px;justify-content:center;flex-wrap:wrap;}
+.cd-unit{text-align:center;min-width:100px;}
+.cd-num{font-family:'Nosifer',cursive;font-size:clamp(4rem,10vw,7rem);color:#cc0000;display:block;filter:drop-shadow(0 0 25px #ff0000);animation:cd-shake 3s infinite;}
+@keyframes cd-shake{0%,85%,100%{transform:skewX(0)}87%{transform:skewX(-8deg)}89%{transform:skewX(8deg)}91%{transform:skewX(-4deg)}93%{transform:skewX(4deg)}}
+.cd-sep{font-family:'Nosifer',cursive;font-size:5rem;color:#8b0000;align-self:center;animation:cd-sep 1s infinite;}
+@keyframes cd-sep{0%,100%{opacity:1}50%{opacity:0}}
+.cd-lbl{font-size:0.65rem;color:#3d0000;letter-spacing:5px;text-transform:uppercase;margin-top:5px;}
+
+/* ═══ INVESTIGATION ═══ */
+#investigation{background:#000;border-top:1px solid #0d0000;}
+.inv-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:1px;max-width:1200px;margin:0 auto;}
+.inv-card{background:#060000;padding:35px;border:1px solid #0d0000;position:relative;overflow:hidden;}
+.inv-card::before{content:'CLASSIFIED';position:absolute;top:15px;right:-25px;background:#8b0000;color:#000;font-family:'Eater',cursive;font-size:0.7rem;letter-spacing:3px;padding:4px 40px;transform:rotate(45deg);}
+.inv-date{font-family:'Special Elite',cursive;font-size:0.75rem;color:#3d0000;letter-spacing:3px;margin-bottom:10px;}
+.inv-title{font-family:'Abril Fatface',cursive;font-size:1.3rem;color:#8b0000;margin-bottom:12px;}
+.inv-text{color:#444;font-size:0.9rem;line-height:1.7;}
+.inv-status{display:inline-block;margin-top:15px;padding:4px 12px;border:1px solid #3d0000;font-family:'Eater',cursive;font-size:0.7rem;color:#8b0000;letter-spacing:3px;}
+
+/* ═══ TESTIMONY ═══ */
+#testimony{background:linear-gradient(180deg,#000,#080000,#000);}
+.test-container{max-width:800px;margin:0 auto;}
+.test-item{padding:40px;border:1px solid #0d0000;margin-bottom:2px;position:relative;background:#060000;transition:all 0.3s;}
+.test-item:hover{border-color:#3d0000;background:#080000;}
+.test-quote-mark{font-family:'Nosifer',cursive;font-size:6rem;color:#0d0000;position:absolute;top:-10px;left:20px;line-height:1;}
+.test-text{font-size:1.05rem;color:#555;line-height:1.9;position:relative;z-index:1;font-style:italic;}
+.test-text em{color:#8b0000;font-style:normal;}
+.test-author{font-family:'Eater',cursive;font-size:0.8rem;color:#3d0000;letter-spacing:4px;margin-top:15px;text-transform:uppercase;}
+.test-condition{font-size:0.7rem;color:#2a0000;letter-spacing:3px;margin-top:5px;text-transform:uppercase;}
+
+/* ═══ INTERACTIVE OUIJA ═══ */
+#ouija-sec{background:radial-gradient(ellipse at center,#080000,#000);text-align:center;padding:90px 40px;}
+.ouija-board{max-width:600px;margin:0 auto;background:linear-gradient(135deg,#0a0500,#0d0200);border:2px solid #2a1000;padding:40px;position:relative;}
+.ouija-board::before{content:'OUIJA';font-family:'Nosifer',cursive;font-size:3rem;color:#3d2000;display:block;margin-bottom:20px;filter:drop-shadow(0 0 10px #8b4000);}
+.ouija-letters{display:grid;grid-template-columns:repeat(9,1fr);gap:5px;margin-bottom:15px;}
+.ouija-letter{padding:8px 4px;text-align:center;font-family:'Creepster',cursive;font-size:1.1rem;color:#3d2000;cursor:pointer;border:1px solid #1a1000;transition:all 0.2s;user-select:none;}
+.ouija-letter:hover,.ouija-letter.lit{color:#ff6600;text-shadow:0 0 15px #ff6600;border-color:#8b4000;background:rgba(139,64,0,0.1);}
+.ouija-nums{display:grid;grid-template-columns:repeat(10,1fr);gap:5px;margin-bottom:20px;}
+.ouija-num{padding:6px 4px;text-align:center;font-family:'Creepster',cursive;font-size:0.9rem;color:#2a1a00;cursor:pointer;border:1px solid #0d0800;transition:all 0.2s;user-select:none;}
+.ouija-num:hover{color:#ff6600;text-shadow:0 0 10px #ff6600;}
+.ouija-btns{display:flex;gap:20px;justify-content:center;}
+.ouija-word{font-family:'Creepster',cursive;font-size:1.5rem;color:#3d2000;letter-spacing:5px;padding:8px 20px;border:1px solid #1a1000;}
+.ouija-display{min-height:60px;display:flex;align-items:center;justify-content:center;border:1px solid #1a1000;margin:20px 0;padding:10px;}
+.ouija-output{font-family:'Nosifer',cursive;font-size:1.8rem;color:#ff6600;letter-spacing:8px;text-shadow:0 0 20px #ff6600;min-height:50px;display:flex;align-items:center;gap:5px;flex-wrap:wrap;justify-content:center;}
+.ouija-planchette{font-size:2.5rem;cursor:pointer;animation:planchette 4s ease-in-out infinite;display:inline-block;}
+@keyframes planchette{0%,100%{transform:translate(0,0) rotate(0)}25%{transform:translate(10px,-5px) rotate(5deg)}50%{transform:translate(-5px,8px) rotate(-3deg)}75%{transform:translate(8px,3px) rotate(2deg)}}
+.ouija-fire{font-size:1.2rem;}
+.ouija-note{font-family:'Special Elite',cursive;font-size:0.75rem;color:#2a1500;letter-spacing:2px;margin-top:15px;}
+
+/* ═══ RITUAL ═══ */
+#ritual{background:#000;text-align:center;padding:100px 40px;}
+.ritual-circle{width:300px;height:300px;border-radius:50%;border:2px solid #3d0000;margin:0 auto 40px;position:relative;animation:ritual-spin 20s linear infinite;display:flex;align-items:center;justify-content:center;}
+.ritual-circle::before{content:'';position:absolute;width:240px;height:240px;border-radius:50%;border:1px solid #1a0000;}
+.ritual-circle::after{content:'';position:absolute;width:180px;height:180px;border-radius:50%;border:1px solid #0d0000;}
+.ritual-center{font-size:5rem;animation:ritual-spin 10s linear infinite reverse;}
+@keyframes ritual-spin{from{transform:rotate(0deg)}to{transform:rotate(360deg)}}
+.ritual-runes{display:flex;gap:20px;justify-content:center;flex-wrap:wrap;max-width:600px;margin:0 auto 40px;}
+.rune{width:60px;height:60px;border:1px solid #1a0000;display:flex;align-items:center;justify-content:center;font-size:1.8rem;cursor:pointer;transition:all 0.3s;}
+.rune:hover{border-color:#8b0000;box-shadow:0 0 20px rgba(139,0,0,0.4);animation:rune-flash 0.3s infinite;}
+@keyframes rune-flash{0%,100%{background:transparent}50%{background:rgba(139,0,0,0.2)}}
+.ritual-text{font-family:'Creepster',cursive;font-size:1.2rem;color:#3d0000;max-width:600px;margin:0 auto;line-height:2;letter-spacing:3px;}
+
+/* ═══ CTA ═══ */
+#cta-sec{background:radial-gradient(ellipse at center,#0d0000,#000);text-align:center;padding:120px 40px;}
+.cta-text{font-family:'Creepster',cursive;font-size:clamp(1.2rem,3vw,1.8rem);color:#444;max-width:700px;margin:0 auto 50px;line-height:2.2;letter-spacing:2px;}
+.cta-text em{color:#cc0000;font-style:normal;animation:word-glow 2s infinite;}
+@keyframes word-glow{0%,100%{color:#8b0000;text-shadow:none}50%{color:#ff3333;text-shadow:0 0 20px #ff0000}}
+.cta-btn{display:inline-block;font-family:'Eater',cursive;font-size:1.8rem;color:#000;background:linear-gradient(135deg,#8b0000,#cc0000);padding:22px 60px;border:none;cursor:pointer;letter-spacing:6px;text-transform:uppercase;position:relative;overflow:hidden;transition:all 0.3s;clip-path:polygon(10px 0,100% 0,calc(100% - 10px) 100%,0 100%);}
+.cta-btn::before{content:'';position:absolute;top:-50%;left:-60%;width:40%;height:200%;background:rgba(255,255,255,0.1);transform:skewX(-20deg);animation:cta-shine 3s infinite;}
+@keyframes cta-shine{0%{left:-60%}100%{left:160%}}
+.cta-btn:hover{background:linear-gradient(135deg,#cc0000,#ff3333);box-shadow:0 0 60px rgba(255,0,0,0.7);transform:scale(1.05);}
+
+/* ═══ FOOTER ═══ */
+footer{background:#000;border-top:1px solid #0d0000;text-align:center;padding:50px 40px;}
+.footer-skulls{font-size:1.2rem;color:#8b0000;margin-bottom:20px;animation:warn 3s infinite;letter-spacing:10px;}
+.footer-text{font-family:'Creepster',cursive;color:#222;font-size:0.85rem;letter-spacing:3px;}
+.footer-text a{color:#3d0000;text-decoration:none;}
+
+/* SCARE POPUP */
+#popup{position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.97);z-index:9998;display:flex;align-items:center;justify-content:center;opacity:0;pointer-events:none;transition:opacity 0.05s;}
+#popup.on{opacity:1;pointer-events:all;animation:p-shake 0.2s infinite;}
+@keyframes p-shake{0%{transform:translate(0,0)}25%{transform:translate(-8px,6px)}50%{transform:translate(8px,-6px)}75%{transform:translate(-5px,-4px)}100%{transform:translate(5px,4px)}}
+.p-inner{text-align:center;}
+.p-face{font-size:20rem;line-height:1;animation:p-face 0.1s infinite;}
+@keyframes p-face{0%,100%{filter:none;transform:scale(1)}50%{filter:invert(1) hue-rotate(120deg);transform:scale(1.1)}}
+.p-text{font-family:'Nosifer',cursive;font-size:clamp(2rem,6vw,4rem);color:#ff0000;margin-top:20px;animation:p-txt 0.15s infinite;}
+@keyframes p-txt{0%,100%{color:#ff0000;transform:scaleX(1)}50%{color:#fff;transform:scaleX(1.05)}}
+
+/* TYPING EFFECT */
+.typing-cursor{animation:blink-cur 1s infinite;}
+@keyframes blink-cur{0%,100%{opacity:1}50%{opacity:0}}
+
+@media(max-width:768px){
+  .g-grid{grid-template-columns:repeat(2,1fr);}
+  .ouija-letters{grid-template-columns:repeat(6,1fr);}
+  nav{padding:12px 20px;}
+  .nav-links{display:none;}
+}
+</style>
+</head>
+<body>
+
+<!-- ELEMENTS -->
+<div class="blood-line"></div>
+<div id="blink"></div>
+<div id="cur"></div>
+<div id="cur2"></div>
+<canvas id="pCanvas" style="position:fixed;top:0;left:0;pointer-events:none;z-index:1;"></canvas>
+
+<!-- POPUP -->
+<div id="popup">
+  <div class="p-inner">
+    <div class="p-face" id="p-face">👁</div>
+    <div class="p-text" id="p-text">U SENI KO'RMOQDA</div>
+  </div>
+</div>
+
+<!-- NAV -->
+<nav>
+  <a href="#" class="nav-logo">☠ VOID</a>
+  <ul class="nav-links">
+    <li><a href="#stories">Hikoyalar</a></li>
+    <li><a href="#facts">Faktlar</a></li>
+    <li><a href="#investigation">Tekshiruvlar</a></li>
+    <li><a href="#testimony">Guvohlar</a></li>
+    <li><a href="#ouija-sec">Ouija</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div id="drips"></div>
+  <div class="h-lines"></div>
+
+  <!-- floating eyes -->
+  <div class="f-eye" style="left:5%;top:30%;animation-duration:10s;animation-delay:0s;">👁</div>
+  <div class="f-eye" style="left:15%;top:60%;animation-duration:14s;animation-delay:2s;font-size:1.5rem;">👁</div>
+  <div class="f-eye" style="left:80%;top:25%;animation-duration:8s;animation-delay:1s;">💀</div>
+  <div class="f-eye" style="left:88%;top:70%;animation-duration:12s;animation-delay:3s;font-size:1.5rem;">👁</div>
+  <div class="f-eye" style="left:50%;top:10%;animation-duration:9s;animation-delay:0.5s;font-size:1.2rem;">☠</div>
+  <div class="f-eye" style="left:35%;top:80%;animation-duration:11s;animation-delay:4s;">🩸</div>
+  <div class="f-eye" style="left:65%;top:85%;animation-duration:7s;animation-delay:1.5s;font-size:1.5rem;">💀</div>
+
+  <h1 class="hero-title">VOID<br>EATS<br>SOULS</h1>
+  <p class="hero-sub">— U Doim Shu Yerda Edi —</p>
+  <p class="hero-warning">⚠ BU SAHIFADAN CHIQIB BO'LMAYDI ⚠</p>
+
+  <div class="s-hint">
+    <span>PASTGA TUSH</span>
+    <span class="arr">↓↓↓</span>
+  </div>
+</section>
+
+<!-- TICKERS -->
+<div class="ticker-wrap"><div class="ticker-inner">
+  <span>QOCH ☠</span><span>U SENI KO'RMOQDA ☠</span><span>TUNDA UYG'ON ☠</span><span>ORQANGGA QAR ☠</span><span>SEN YOLG'IZ EMASSAN ☠</span><span>U BU YERDA ☠</span><span>QOCH ☠</span><span>U SENI KO'RMOQDA ☠</span><span>TUNDA UYG'ON ☠</span><span>ORQANGGA QAR ☠</span><span>SEN YOLG'IZ EMASSAN ☠</span><span>U BU YERDA ☠</span>
+</div></div>
+<div class="ticker-wrap"><div class="ticker-inner">
+  <span>💀 HECH KIM QAYTMAGAN 💀</span><span>U ICHKARIDA 💀</span><span>ZULMAT UNGA EGA 💀</span><span>UYINGDA KIMDIR BOR 💀</span><span>OYNANGGA QARAMA 💀</span><span>U SEKINLIK BILAN KELMOQDA 💀</span><span>HECH KIM QAYTMAGAN 💀</span><span>U ICHKARIDA 💀</span><span>ZULMAT UNGA EGA 💀</span><span>UYINGDA KIMDIR BOR 💀</span>
+</div></div>
+<div class="ticker-wrap"><div class="ticker-inner">
+  <span>🩸 VOID 🩸</span><span>VOID 🩸</span><span>VOID 🩸</span><span>VOID 🩸</span><span>VOID 🩸</span><span>VOID 🩸</span><span>VOID 🩸</span><span>VOID 🩸</span><span>VOID 🩸</span><span>VOID 🩸</span><span>VOID 🩸</span><span>VOID 🩸</span><span>VOID 🩸</span><span>VOID 🩸</span>
+</div></div>
+
+<!-- ═══ HORROR STORIES ═══ -->
+<section id="stories">
+  <h2 class="s-title">Haqiqiy Dahshat Hikoyalari</h2>
+  <div class="s-divider"></div>
+  <div class="stories-grid">
+
+    <div class="story-card">
+      <span class="story-num">01</span>
+      <div class="story-content">
+        <span class="story-tag">🩸 Toshkent — 1987-yil, Kuz</span>
+        <h3 class="story-title">Yopiq Xona</h3>
+        <p class="story-text">Eski mahallaning burchagidagi uy yillar davomida bo'sh turdi. Qo'shnilar derazadan <em>har kecha soat 3da</em> yorug'lik ko'rishardi. Lekin elektr ulanmagan edi. Bir kuni Mirzo ismli yosh yigit "Men ichkariga kiraman" dedi. U kirib ketdi. <em>Eshik ichkaridan qulflandi.</em> Ertalab kelmadi. Kech kelmadi. Bir hafta o'tdi. Politsiya eshikni buzdi. Uy bo'sh edi. Faqat devorga o'zbek tilida bitta so'z yozilgan edi: <em>"QAYTMANG"</em>. Mirzoning hech qachon topi topilmadi.</p>
+        <span class="story-read-more" onclick="toggleStory(this)">▶ DAVOMINI O'QI</span>
+        <div class="story-extra">
+          <p>Oradan 3 yil o'tdi. Xuddi shu uy yangi oila tomonidan sotib olindi. Birinchi kechasi qo'ng'iroq qilishdi: "Devorlarda nimadir harakatlanmoqda." Politsiya keldi. Hamma narsa joyida edi. Lekin fotosuratchilar bir narsani payqashdi — eski suratlar ichida, 1970-yillarda olingan rasmlarda, xuddi shu deraza oldida turgan bir soya bor edi. Hech kim bu yerda yashamasdi. Ammo soya har safar xuddi bir xil holatda turardi. <em>U kutmoqda edi.</em></p>
+        </div>
+      </div>
+    </div>
+    <hr class="story-sep">
+
+    <div class="story-card">
+      <span class="story-num">02</span>
+      <div class="story-content">
+        <span class="story-tag">☠ Samarqand — 2003-yil</span>
+        <h3 class="story-title">Ko'zgu Fikri</h3>
+        <p class="story-text">Samarqandda bir qiz bor edi — Shahlo. U har kuni eski ko'zgu oldida taranar edi. Bir kuni ko'zguda o'zini emas, <em>orqa tomonda turgan birov</em>ni ko'rdi. Aylandi — hech kim yo'q. Yana qaradi — soya hali ham u yerda edi. <em>Tabassumli.</em> Shahlo qichqirdi. Oila yugurdi. Ko'zgu siniq edi. Lekin Shahlo ko'zgudan ko'zini olmasdi, chunki <em>ko'zgu ichidagi soya ko'chib yurardi</em> — xonadan xonaga.</p>
+        <span class="story-read-more" onclick="toggleStory(this)">▶ DAVOMINI O'QI</span>
+        <div class="story-extra">
+          <p>Oila ko'zguni yo'q qildi. Sindirishdi. Ko'chaga tashlab, ustiga tosh qo'yishdi. Ertasi kuni ko'zgu yana xonada edi. Hech kim qo'ymagan. Shahlo endi deyarli gapirmasdi. Faqat ba'zan devorga qarab shivirlar, keyin to'xtab kulardi. Psixologlar tekshirishdi — hamma narsa normal edi. Lekin kechasi uyqu paytida, videokameraga bir narsa tushdi: <em>Shahlo ko'zida ko'zgu aks etmasdi.</em> O'rniga — qorong'ulik.</p>
+        </div>
+      </div>
+    </div>
+    <hr class="story-sep">
+
+    <div class="story-card">
+      <span class="story-num">03</span>
+      <div class="story-content">
+        <span class="story-tag">👁 Farg'ona — 2009-yil, Qish</span>
+        <h3 class="story-title">Telefon Qo'ng'irog'i</h3>
+        <p class="story-text">Alisher uxlashdan oldin telefoniga qaradi — soat 02:59. Keyin uxladi. <em>03:00 da telefon jiringladi.</em> Nomer — o'zining nomeri. O'zini o'zi chaqirayotgandi. U ko'tardi. Narigi tomonda — nafas. Faqat nafas. Keyin pichirlab: <em>"Eshikni och. Men tashqaridaman."</em> Alisher telefon qo'ydi. Deraza pardasi biroz ko'chdi. Tashqarida — <em>uning o'zi turardi.</em> Xuddi o'zi. Tabassumli. Va qo'l siltadi.</p>
+        <span class="story-read-more" onclick="toggleStory(this)">▶ DAVOMINI O'QI</span>
+        <div class="story-extra">
+          <p>Alisher qichqirib yubordi. Oila yugurdi. Derazada hech kim yo'q edi. Lekin qorda izlar bor edi — eshikdan kelgan izlar. Ichkariga kirib kelgan izlar. Lekin eshik qulfliq edi va ichkarida hech kim yo'q edi. Operatorga so'rashdi — 03:00 da Alisherga hech qanday qo'ng'iroq bo'lmagan. Lekin telefon jurnalidagi oxirgi qo'ng'iroq — Alisherning o'z nomeri. <em>Hozirgi kunga qadar izohlanmagan.</em></p>
+        </div>
+      </div>
+    </div>
+    <hr class="story-sep">
+
+    <div class="story-card">
+      <span class="story-num">04</span>
+      <div class="story-content">
+        <span class="story-tag">🕯 Buxoro — 1995-yil</span>
+        <h3 class="story-title">Eski Maktab Kutubxonasi</h3>
+        <p class="story-text">Shahar chetidagi maktab yopilgandan keyin, kutubxona 10 yil bo'sh qoldi. Muhim hujjatlarni olish uchun ikki o'qituvchi ichkariga kirdi. <em>Birinchi xonada hamma kitob ochiq edi</em> — go'yo biror bir o'quvchi 10 yil oldin shundaycha qoldirgan. Stollarda — chizilgan rasmlar. Barchasi bir xil: ko'z. <em>Minglab ko'z.</em> Ikkinchi o'qituvchi kutubxonaning eng orqa xonasiga kirdi. Qaytmadi.</p>
+        <span class="story-read-more" onclick="toggleStory(this)">▶ DAVOMINI O'QI</span>
+        <div class="story-extra">
+          <p>Birinchi o'qituvchi yordam chaqirdi. Politsiya keldi. Orqa xonada hujjatchini topishdi — u burchakda o'tirardi, devorga qarab. Unga tegishganda: sovuq. Lekin tirik edi. Shifokorxonaga olib borishdi. U hech gapirmadi. Faqat bir narsa: <em>"U menga hamma narsani ko'rsatdi."</em> Nima ko'rganini hech qachon aytmadi. 6 oy o'tib, u kutubxona rasmini chizdi — birinchi marta gapirdi: <em>"U hali ham o'sha yerda."</em></p>
+        </div>
+      </div>
+    </div>
+    <hr class="story-sep">
+
+    <div class="story-card">
+      <span class="story-num">05</span>
+      <div class="story-content">
+        <span class="story-tag">💀 Namangan — 2015-yil</span>
+        <h3 class="story-title">O'z Ovozi</h3>
+        <p class="story-text">Jasur uyda yolg'iz edi. Oshxonadan ovoz eshitdi — o'zining ovozi. <em>"Jasur. Jasur. Jasur."</em> — o'z ismi. Oshxonaga kirdi — bo'sh. Ortiga qaytdi. Yana: <em>"Jasur, menga qara."</em> Yuqoridan. Yuqori qavat yo'q edi — bu bir qavatli uy edi. Shiftga qaradi. Shiftda — <em>oyoq izlari.</em> Ichkaridan. Pastga qarab. Xuddi biror kim shiftda yurganday.</p>
+        <span class="story-read-more" onclick="toggleStory(this)">▶ DAVOMINI O'QI</span>
+        <div class="story-extra">
+          <p>Jasur qochishga urinmadi. U o'rnida qotdi. Ovoz to'xtadi. Izlar yo'qoldi. Ertalab u hammasini unutgan edi — xotirasi yo'q edi. Faqat oyog'ida ko'k dog'lar bor edi. Xuddi biror kim uni ushlab olganday. Bir hafta o'tib, qo'shnisi aytdi: "Tun bo'yi uyingdan ikki kishi gaplashayotgani eshitildi." Jasur tun bo'yi uydan chiqmagan edi.</p>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- FACTS -->
+<section id="facts">
+  <h2 class="s-title">Haqiqiy Qo'rqinchili Faktlar</h2>
+  <div class="s-divider"></div>
+  <div class="facts-container">
+
+    <div class="fact-item">
+      <span class="fact-icon fact-icon-delay1">🧠</span>
+      <div>
+        <div class="fact-title">Miyangiz Sizi Aldaydi</div>
+        <p class="fact-body">Uxlaganda miyangiz <em>ongli ravishda o'chirilmaydi</em> — u faolroq ishlaydi. Tush paytida, miya o'z sohibiga begona kabi munosabatda bo'ladi. Ya'ni, <em>tushingizda ko'rgan qo'rqinchili narsa</em> — bu sizning miyangizning o'zi yaratgan, lekin siz uni boshqara olmaysiz. Siz faqat tomosha qilasiz.</p>
+        <p class="fact-source">📁 Manba: Nevrologiya jurnali, 2018</p>
+      </div>
+    </div>
+
+    <div class="fact-item">
+      <span class="fact-icon fact-icon-delay2">👁️</span>
+      <div>
+        <div class="fact-title">Ko'zlar Uxlamaydi</div>
+        <p class="fact-body">Uyqu paytida ko'zlaringiz <em>to'liq yopilmaydi</em>. Ko'pchilik odamda REM fazasida ko'z qorachig'i harakat qiladi — bu degani, miya bir narsani <em>ko'rmoqda</em>. Nima ko'rmoqda? Faqat miya biladi. Ba'zi odamlar uyquda <em>ochiq ko'z</em> bilan turadi — lekin ongida bo'lmaydi.</p>
+        <p class="fact-source">📁 Manba: Sleep Research Society</p>
+      </div>
+    </div>
+
+    <div class="fact-item">
+      <span class="fact-icon fact-icon-delay3">👤</span>
+      <div>
+        <div class="fact-title">Siz Hech Qachon Yolg'iz Emassiz</div>
+        <p class="fact-body">Insonning ko'zi ultrabinafsha va infraqizil nurni ko'ra olmaydi. Bu degani, <em>atrofingizda mavjud bo'lgan ba'zi narsalar</em> ko'z uchun ko'rinmas. Ilmiy jihatdan — xonaningizda sizdan boshqa jism bo'lishi mumkin, lekin siz buni <em>hech qachon bilmaysiz</em>. Ko'rishingiz uchun asbob kerak. Sizda yo'q.</p>
+        <p class="fact-source">📁 Manba: Optika va ko'rish fizikasi</p>
+      </div>
+    </div>
+
+    <div class="fact-item">
+      <span class="fact-icon fact-icon-delay4">🕐</span>
+      <div>
+        <div class="fact-title">Soat 3:00 — Iblisning Soati</div>
+        <p class="fact-body">Diniy va folklore an'analarida <em>soat 3:00 AM</em> "qora soat" deb ataladi — chunki bu vaqtda insonning hayotiy funksiyalari eng pastda bo'ladi. Ko'pchilik <em>qo'rqinchili hodisalar</em> haqida xabar berishadi. Ilmiy jihatdan — bu paytda uyqu eng chuqur, miya eng zaif, va <em>siz haqiqiy bilan xayoliy</em>ni ajrata olmaysiz.</p>
+        <p class="fact-source">📁 Manba: Xronobiologiya tadqiqotlari</p>
+      </div>
+    </div>
+
+    <div class="fact-item">
+      <span class="fact-icon">🪞</span>
+      <div>
+        <div class="fact-title">Ko'zgu Psixologiyasi</div>
+        <p class="fact-body">Qorong'uda ko'zguga 10 daqiqa davomida qaraganda, <em>miyangiz o'z yuzingizni tanishni to'xtatadi</em>. Bu "Troxler effekti" deyiladi. Ko'zguda boshqa yuz ko'rinadi — ba'zan dahshatli. <em>Bu sizning miyangiz</em> emas, balki ko'zning bir hili. Lekin kim biladi — balki emas?</p>
+        <p class="fact-source">📁 Manba: Perception, 2010 — Giovani Caputo tadqiqoti</p>
+      </div>
+    </div>
+
+    <div class="fact-item">
+      <span class="fact-icon">🦷</span>
+      <div>
+        <div class="fact-title">Tish Tushida Ko'rish</div>
+        <p class="fact-body">Tish tushishini ko'rish — dunyodagi <em>eng keng tarqalgan qo'rqinchili tush</em>. Freyd bu tushni o'lim qo'rquvi bilan bog'lagan. Lekin asliyati dahshatli: tadqiqotlar ko'rsatadi, <em>bu tushni ko'rgan odam</em> keyingi 3 kunda kutilmagan voqea yoki stressli xabar olishi mumkin. Tasodif emas — bu miyaning oldindan ko'rish qobiliyati bo'lishi mumkin.</p>
+        <p class="fact-source">📁 Manba: Tush tadqiqotlari jurnali, 2014</p>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- HORROR CARDS -->
+<section id="horrors">
+  <h2 class="s-title">Qo'rquv Arxivi</h2>
+  <div class="s-divider"></div>
+  <div class="cards-grid">
+    <div class="h-card"><span class="h-card-num">I</span><span class="h-card-icon">🚪</span><div class="h-card-title">Yopiq Eshik</div><p class="h-card-text">U eshik ichkaridan qulflangan. Sen uni yopmagandinging. Devordan nafas olayotgan ovoz eshitiladi. Eshikni ochsang — hech kim yo'q. Lekin hid — bor. Kimningdir hidi.</p></div>
+    <div class="h-card"><span class="h-card-num">II</span><span class="h-card-icon">📸</span><div class="h-card-title">Eski Surat</div><p class="h-card-text">Oilaviy suratni tekshiring — orqa fonda, derazada, har doim bir xil soya turadi. Har bir suratda. 1970-yildan beri. Hech kim e'tibor bermagan. Sendan avval.</p></div>
+    <div class="h-card"><span class="h-card-num">III</span><span class="h-card-icon">📞</span><div class="h-card-title">O'lik Telefon</div><p class="h-card-text">Batareya o'chgan telefon jiringladi. Ko'tarding. Narigi tomonda — sening ovozingda birov gapirdi: "Eshitmoqdasan?" Keyin o'chdi. Batareya hali ham nol foiz.</p></div>
+    <div class="h-card"><span class="h-card-num">IV</span><span class="h-card-icon">🛏️</span><div class="h-card-title">Yostig' Osti</div><p class="h-card-text">Hech kim qo'ymagan narsa. Lekin har kecha — shu yerda. Ertalab yo'q. Kechasi — yana. Kameraga tushirmadik. Qo'rqdik.</p></div>
+    <div class="h-card"><span class="h-card-num">V</span><span class="h-card-icon">👣</span><div class="h-card-title">Qadam Ovozi</div><p class="h-card-text">Yuqori qavatda. Har kecha 3:00da. Siz bir qavatli uyda yashaysiz. Qo'shnilar ham eshitadi. Kim — hech kim bilmaydi. Nechta qadam — doim 7 ta.</p></div>
+    <div class="h-card"><span class="h-card-num">VI</span><span class="h-card-icon">🌒</span><div class="h-card-title">Yarim Oyda</div><p class="h-card-text">Yarim oy tunda qabristonga borib ko'ring. 3:00da. Va kutib turing. Ko'pchilik qochadi. Ba'zilari... qaytmaydi. Nima ko'rganini aytmaydi.</p></div>
+  </div>
+</section>
+
+<!-- GALLERY -->
+<section id="gallery">
+  <h2 class="s-title">Ko'rinishlar Arxivi</h2>
+  <div class="s-divider"></div>
+  <div class="g-grid">
+    <div class="g-item"><span class="g-glyph" style="animation-delay:0s">💀</span><span class="g-label">Bosh Suyak</span><div class="g-overlay"></div></div>
+    <div class="g-item"><span class="g-glyph" style="animation-delay:0.3s">👁️</span><span class="g-label">Ko'z</span><div class="g-overlay"></div></div>
+    <div class="g-item"><span class="g-glyph" style="animation-delay:0.6s">🕷️</span><span class="g-label">O'rgimchak</span><div class="g-overlay"></div></div>
+    <div class="g-item"><span class="g-glyph" style="animation-delay:0.9s">🦇</span><span class="g-label">Ko'rshapalak</span><div class="g-overlay"></div></div>
+    <div class="g-item"><span class="g-glyph" style="animation-delay:1.2s">🩸</span><span class="g-label">Qon</span><div class="g-overlay"></div></div>
+    <div class="g-item"><span class="g-glyph" style="animation-delay:1.5s">🪦</span><span class="g-label">Qabriston</span><div class="g-overlay"></div></div>
+    <div class="g-item"><span class="g-glyph" style="animation-delay:1.8s">👻</span><span class="g-label">Arvoh</span><div class="g-overlay"></div></div>
+    <div class="g-item"><span class="g-glyph" style="animation-delay:2.1s">🕯️</span><span class="g-label">Sham</span><div class="g-overlay"></div></div>
+    <div class="g-item"><span class="g-glyph" style="animation-delay:2.4s">🐍</span><span class="g-label">Ilon</span><div class="g-overlay"></div></div>
+    <div class="g-item"><span class="g-glyph" style="animation-delay:2.7s">🌑</span><span class="g-label">Zulmat</span><div class="g-overlay"></div></div>
+    <div class="g-item"><span class="g-glyph" style="animation-delay:3s">🫀</span><span class="g-label">Yurak</span><div class="g-overlay"></div></div>
+    <div class="g-item"><span class="g-glyph" style="animation-delay:3.3s">🦴</span><span class="g-label">Suyak</span><div class="g-overlay"></div></div>
+  </div>
+</section>
+
+<!-- STATS -->
+<section id="stats-sec">
+  <h2 class="s-title">Raqamlar Yolg'on Aytmaydi</h2>
+  <div class="s-divider"></div>
+  <div class="stats-grid">
+    <div class="stat-box"><span class="stat-n" id="s1">0</span><span class="stat-l">Yo'qolganlar</span></div>
+    <div class="stat-box"><span class="stat-n" id="s2">0</span><span class="stat-l">Tush Qo'rquvlari</span></div>
+    <div class="stat-box"><span class="stat-n" id="s3">0</span><span class="stat-l">Tushuntirilmaganlar</span></div>
+    <div class="stat-box"><span class="stat-n" id="s4">0</span><span class="stat-l">Guvohlar</span></div>
+    <div class="stat-box"><span class="stat-n" id="s5">0</span><span class="stat-l">Yopiq Fayllar</span></div>
+  </div>
+</section>
+
+<!-- INVESTIGATION -->
+<section id="investigation">
+  <h2 class="s-title">Maxfiy Tekshiruvlar</h2>
+  <div class="s-divider"></div>
+  <div class="inv-grid">
+    <div class="inv-card">
+      <div class="inv-date">📅 13 Oktyabr, 1998 | Ref: VD-0013</div>
+      <div class="inv-title">Toshkent Mahallasi Hodisasi</div>
+      <p class="inv-text">Kechasi soat 2:47 da 14 nafar mahalla sakin bir vaqtda baqirib uyg'ondi. Barchasi xuddi bir xil tush ko'rishgan. Tasvirlar: qorong'u xona, ko'z, va bitta so'z — hech kim yoza olmagan. Tekshiruv: 6 oy. Xulosa: noaniq.</p>
+      <span class="inv-status">⚠ YOPIQ — NOANIQ</span>
+    </div>
+    <div class="inv-card">
+      <div class="inv-date">📅 7 Mart, 2004 | Ref: VD-0047</div>
+      <div class="inv-title">Yo'qolgan Fotosuratchi</div>
+      <p class="inv-text">Amir Karimov eski bino rasmlarini olayotganda yo'qoldi. Kamerasi topildi — ichidagi barcha 340 surat bir xil: qorong'u xona, burchakda biror narsa. Har suratda yaqinlashmoqda. Oxirgi surat — kamera ob'ektiviga juda yaqin yuz. Amirning o'zi topilmadi.</p>
+      <span class="inv-status">🔴 FAOL — IZLANMOQDA</span>
+    </div>
+    <div class="inv-card">
+      <div class="inv-date">📅 31 Oktyabr, 2011 | Ref: VD-0099</div>
+      <div class="inv-title">Ovozli Yozuv Anomaliyasi</div>
+      <p class="inv-text">Musiqa studiyasida yozuv paytida fonda noma'lum ovoz yozildi. Chastota analizi: inson ovozi emas. Lekin so'zlar — aniq. Mazmun: ko'chirma talab qilindi va klassifikatsiya qilindi. Muxandis o'sha kuni ishdan ketdi.</p>
+      <span class="inv-status">🔒 MAXFIY — A-DARAJA</span>
+    </div>
+    <div class="inv-card">
+      <div class="inv-date">📅 Sana: SIR | Ref: VD-????</div>
+      <div class="inv-title">Bu Sahifa</div>
+      <p class="inv-text">Ushbu veb-sahifa kim tomonidan yaratilgani noma'lum. Server joylashuvini aniqlash imkonsiz — IP har 0.3 soniyada o'zgarmoqda. Tarkibi — o'z-o'zidan yangilanmoqda. Holat: TEKSHIRILMOQDA.</p>
+      <span class="inv-status">⚡ JONLI — SEN HAM KUZATILMOQDASAN</span>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONY -->
+<section id="testimony">
+  <h2 class="s-title">Tirik Guvohlar</h2>
+  <div class="s-divider"></div>
+  <div class="test-container">
+
+    <div class="test-item">
+      <div class="test-quote-mark">"</div>
+      <p class="test-text">Men uyim shiftida <em>qo'l izlarini ko'rdim</em>. Pastga qaratilgan. Xuddi biror kim yuqoridan pastga osilib turganday. Ertasi kuni yo'qolishdi. Ammo kechasi — yana. Endi men shiftga qaramayman.</p>
+      <div class="test-author">— Shahlo M., 34 yoshda, Toshkent</div>
+      <div class="test-condition">Holat: Hali ham o'sha uyda yashaydi. O'z xohishi bilan.</div>
+    </div>
+
+    <div class="test-item">
+      <div class="test-quote-mark">"</div>
+      <p class="test-text">Tunda yo'lak bo'ylab ketayotganda oynada o'zimni ko'rdim. Lekin <em>men to'xtadim — u to'xtamadi.</em> U davom etdi. Men baqirganimda — u ham baqirdi. Lekin imo-ishoralar boshqacha edi.</p>
+      <div class="test-author">— Bekzod T., 28 yoshda, Samarqand</div>
+      <div class="test-condition">Holat: Ko'zgularsiz xonada yashaydi. Ixtiyoriy.</div>
+    </div>
+
+    <div class="test-item">
+      <div class="test-quote-mark">"</div>
+      <p class="test-text">3 yil avval bolam tunda burchakka qarab kulib o'ynardi. "Kim bilan o'ynayapsan?" desam: <em>"U odam bilan. Siz ko'rmaysizmi?"</em> Burchakda hech kim yo'q edi. 6 oydan keyin bolam bu xotironi butunlay unutdi.</p>
+      <div class="test-author">— Nodira R., 41 yoshda, Farg'ona</div>
+      <div class="test-condition">Holat: O'sha uydan ko'chib ketishgan. Sababsiz.</div>
+    </div>
+
+    <div class="test-item">
+      <div class="test-quote-mark">"</div>
+      <p class="test-text">Men <em>o'z dafningni ko'rdim.</em> Tushda emas — oyoqda turib. Hamma bor edi — oila, do'stlar. Hammalari yig'layapti. Men esa ular orasida turib, <em>o'z jasadimga qaradim.</em> Keyin ko'zimni yumdim. Ochganimda — uyda edim.</p>
+      <div class="test-author">— Ismoil K., 52 yoshda, Namangan</div>
+      <div class="test-condition">Holat: Sog'lom. Hech narsa yo'q. Lekin o'sha kundan beri uxlamaydi.</div>
+    </div>
+
+  </div>
+</section>
+
+<!-- COUNTDOWN -->
+<section id="cd-sec">
+  <div class="cd-title">⚠ U KELAYAPTI — VAQT TUGAMOQDA ⚠</div>
+  <div class="cd-sub">Yarim Tun Sanagichi</div>
+  <div class="cd-display">
+    <div class="cd-unit"><span class="cd-num" id="cdh">00</span><div class="cd-lbl">Soat</div></div>
+    <div class="cd-sep">:</div>
+    <div class="cd-unit"><span class="cd-num" id="cdm">00</span><div class="cd-lbl">Daqiqa</div></div>
+    <div class="cd-sep">:</div>
+    <div class="cd-unit"><span class="cd-num" id="cds">00</span><div class="cd-lbl">Soniya</div></div>
+  </div>
+</section>
+
+<!-- OUIJA BOARD -->
+<section id="ouija-sec">
+  <h2 class="s-title">Ouija Taxtasi</h2>
+  <div class="s-divider"></div>
+  <div class="ouija-board">
+    <div class="ouija-letters" id="ouija-letters"></div>
+    <div class="ouija-nums" id="ouija-nums"></div>
+    <div class="ouija-display">
+      <div class="ouija-output" id="ouija-output">
+        <span style="color:#2a1500;letter-spacing:5px;font-family:'Creepster',cursive;">Savolni boshlang...</span>
+      </div>
+    </div>
+    <div class="ouija-btns">
+      <button class="cta-btn" style="font-size:1rem;padding:12px 30px;margin-right:10px;" onclick="ouijaAsk()">🕯 SO'RA</button>
+      <button class="cta-btn" style="font-size:1rem;padding:12px 30px;background:linear-gradient(135deg,#1a0000,#3d0000);" onclick="ouijaClear()">✕ TOZALA</button>
+    </div>
+    <div class="ouija-note">⚠ Bu o'yin emas. Javoblar — arvohlardandir.</div>
+  </div>
+</section>
+
+<!-- RITUAL -->
+<section id="ritual">
+  <h2 class="s-title">Ritual</h2>
+  <div class="s-divider"></div>
+  <div class="ritual-circle">
+    <span class="ritual-center">☠</span>
+  </div>
+  <div class="ritual-runes">
+    <div class="rune" onclick="runeClick(this,'🔮','Ko\'rish ruhi faollashdi')">🔮</div>
+    <div class="rune" onclick="runeClick(this,'🕯','Alanga yondi')">🕯</div>
+    <div class="rune" onclick="runeClick(this,'💀','Ölüm belgisi qabul qilindi')">💀</div>
+    <div class="rune" onclick="runeClick(this,'🌑','Zulmat ochildi')">🌑</div>
+    <div class="rune" onclick="runeClick(this,'🩸','Qon pakti tuzildi')">🩸</div>
+    <div class="rune" onclick="runeClick(this,'⛧','Eski belgi uyg\'ondi')">⛧</div>
+    <div class="rune" onclick="runeClick(this,'👁','Hamma ko\'rish belgisi')">👁</div>
+    <div class="rune" onclick="runeClick(this,'🕸','Tuzoq qurildi')">🕸</div>
+  </div>
+  <p class="ritual-text" id="ritual-text">Runani bosing — ritual boshlanadi...</p>
+</section>
+
+<!-- CTA -->
+<section id="cta-sec">
+  <h2 class="s-title">So'nggi Tanlov</h2>
+  <div class="s-divider"></div>
+  <p class="cta-text">
+    Bu sahifani ko'rgan har bir kishi <em>allaqachon belgilangan</em>. Sening IP manziling, joylashuvingning, nafas olishingning ritmini <em>VOID biladi</em>. Endi faqat bitta savol qoldi: <em>kirasan yoki qochasan?</em>
+    <br><br>
+    Ammo qochib bo'lmaydi. U <em>allaqachon sening oldingda</em>.
+  </p>
+  <button class="cta-btn" onclick="triggerScare()">☠ MEN KIRAMAN ☠</button>
+</section>
+
+<footer>
+  <div class="footer-skulls">☠ ☠ ☠ ☠ ☠ ☠ ☠ ☠ ☠ ☠</div>
+  <p class="footer-text">© VOID EATS SOULS — Hech Kim Sog' Qaytmagan</p>
+  <p class="footer-text" style="margin-top:10px;font-size:0.7rem;color:#111;">Server joylashuvi: NOMA'LUM | Kimdan: NOMA'LUM | Maqsad: SEN</p>
+</footer>
+
+<script>
+// CURSOR
+const cur = document.getElementById('cur'), cur2 = document.getElementById('cur2');
+let mx=0,my=0,tx=0,ty=0;
+document.addEventListener('mousemove', e=>{
+  mx=e.clientX; my=e.clientY;
+  cur.style.left=mx+'px'; cur.style.top=my+'px';
+});
+setInterval(()=>{
+  tx+=(mx-tx)*0.12; ty+=(my-ty)*0.12;
+  cur2.style.left=tx+'px'; cur2.style.top=ty+'px';
+},16);
+
+// PARTICLES
+const pc=document.getElementById('pCanvas');
+const cx=pc.getContext('2d');
+pc.width=window.innerWidth; pc.height=window.innerHeight;
+window.addEventListener('resize',()=>{pc.width=window.innerWidth;pc.height=window.innerHeight;});
+const pts=[];
+for(let i=0;i<100;i++) pts.push({x:Math.random()*pc.width,y:Math.random()*pc.height,r:Math.random()*1.5,sx:(Math.random()-.5)*.4,sy:-Math.random()*.4,o:Math.random()*.4,c:Math.random()>.5?'#8b0000':'#cc0000'});
+(function ap(){
+  cx.clearRect(0,0,pc.width,pc.height);
+  pts.forEach(p=>{
+    cx.beginPath();cx.arc(p.x,p.y,p.r,0,Math.PI*2);
+    cx.fillStyle=p.c;cx.globalAlpha=p.o;cx.fill();
+    p.x+=p.sx;p.y+=p.sy;
+    if(p.y<-5){p.y=pc.height+5;p.x=Math.random()*pc.width;}
+    if(p.x<0)p.x=pc.width;if(p.x>pc.width)p.x=0;
+  });
+  cx.globalAlpha=1;requestAnimationFrame(ap);
+})();
+
+// BLOOD DRIPS
+function mkDrip(){
+  const c=document.getElementById('drips');
+  const d=document.createElement('div');
+  d.className='drip';
+  d.style.left=Math.random()*100+'%';
+  d.style.height=(60+Math.random()*180)+'px';
+  d.style.width=(2+Math.random()*5)+'px';
+  const dur=2+Math.random()*4;
+  d.style.animationDuration=dur+'s';
+  d.style.animationDelay=(Math.random()*2)+'s';
+  d.style.opacity=0.3+Math.random()*0.7;
+  c.appendChild(d);
+  setTimeout(()=>d.remove(),(dur+3)*1000);
+}
+setInterval(mkDrip,250);
+
+// CLICK SPLAT
+document.addEventListener('click',e=>{
+  const s=document.createElement('div');
+  s.style.cssText=`position:fixed;left:${e.clientX}px;top:${e.clientY}px;width:40px;height:40px;background:radial-gradient(circle,#ff0000,#8b0000,transparent);border-radius:50%;pointer-events:none;z-index:9500;transform:translate(-50%,-50%);animation:sp .6s forwards;`;
+  document.body.appendChild(s);
+  if(!document.getElementById('sp-style')){
+    const st=document.createElement('style');
+    st.id='sp-style';
+    st.textContent='@keyframes sp{0%{transform:translate(-50%,-50%) scale(0);opacity:1}100%{transform:translate(-50%,-50%) scale(5);opacity:0}}';
+    document.head.appendChild(st);
+  }
+  setTimeout(()=>s.remove(),600);
+});
+
+// COUNTDOWN
+function upCd(){
+  const n=new Date(),m=new Date();
+  m.setHours(24,0,0,0);
+  let d=Math.floor((m-n)/1000);
+  const h=Math.floor(d/3600);d%=3600;
+  const mi=Math.floor(d/60),s=d%60;
+  document.getElementById('cdh').textContent=String(h).padStart(2,'0');
+  document.getElementById('cdm').textContent=String(mi).padStart(2,'0');
+  document.getElementById('cds').textContent=String(s).padStart(2,'0');
+}
+setInterval(upCd,1000);upCd();
+
+// STATS ANIMATION
+function animStat(el,target){
+  let cur=0,step=Math.ceil(target/60);
+  const iv=setInterval(()=>{
+    cur=Math.min(cur+step,target);
+    el.textContent=cur.toLocaleString();
+    if(cur>=target)clearInterval(iv);
+  },25);
+}
+let statsD=false;
+new IntersectionObserver(en=>{
+  if(en[0].isIntersecting&&!statsD){
+    statsD=true;
+    animStat(document.getElementById('s1'),9999);
+    animStat(document.getElementById('s2'),66666);
+    animStat(document.getElementById('s3'),1313);
+    animStat(document.getElementById('s4'),847);
+    animStat(document.getElementById('s5'),333);
+  }
+},{threshold:0.3}).observe(document.getElementById('stats-sec'));
+
+// STORY TOGGLE
+function toggleStory(btn){
+  const extra=btn.nextElementSibling;
+  if(extra.classList.contains('open')){
+    extra.classList.remove('open');
+    btn.textContent='▶ DAVOMINI O\'QI';
+  } else {
+    extra.classList.add('open');
+    btn.textContent='▲ YOPISH';
+    btn.style.color='#ff3333';
+  }
+}
+
+// POPUP SCARE
+function triggerScare(){
+  const pop=document.getElementById('popup');
+  const faces=['👁','💀','👻','😱','🕷️','🫀','☠','🌑'];
+  const texts=['U SENI KO\'RMOQDA','QOCH HOZIR!','U BU YERDA','ORQANGGA QAR','SEN YOLG\'IZ EMASSAN','U KULMOQDA','VOID SENI OLDI','TASHQARIGA CHIQMA'];
+  document.getElementById('p-face').textContent=faces[Math.floor(Math.random()*faces.length)];
+  document.getElementById('p-text').textContent=texts[Math.floor(Math.random()*texts.length)];
+  pop.classList.add('on');
+  setTimeout(()=>pop.classList.remove('on'),900);
+}
+function rndScare(){
+  triggerScare();
+  setTimeout(rndScare,20000+Math.random()*25000);
+}
+setTimeout(rndScare,15000);
+
+// SCROLL GLITCH
+let lastScroll=0;
+window.addEventListener('scroll',()=>{
+  const y=window.scrollY;
+  if(Math.abs(y-lastScroll)>300&&Math.random()<0.3){
+    document.body.style.filter='invert(1) hue-rotate(180deg)';
+    setTimeout(()=>document.body.style.filter='',80);
+  }
+  lastScroll=y;
+});
+
+// OUIJA BOARD
+const alpha='ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('');
+const ouijaL=document.getElementById('ouija-letters');
+const ouijaN=document.getElementById('ouija-nums');
+alpha.forEach(l=>{
+  const d=document.createElement('div');
+  d.className='ouija-letter';
+  d.textContent=l;
+  ouijaL.appendChild(d);
+});
+'0123456789'.split('').forEach(n=>{
+  const d=document.createElement('div');
+  d.className='ouija-num';
+  d.textContent=n;
+  ouijaN.appendChild(d);
+});
+
+const ouijaAnswers=['HA','YO\'Q','BALKI','VOID','QOCH','U BU YERDA','SEN KEYINGISAN','3 KUN','ESHIKDA','KO\'ZINGNI YUM','BILMAYMAN','QORONG\'U'];
+function ouijaAsk(){
+  const out=document.getElementById('ouija-output');
+  out.innerHTML='';
+  const answer=ouijaAnswers[Math.floor(Math.random()*ouijaAnswers.length)];
+  const letters=document.querySelectorAll('.ouija-letter,.ouija-num');
+  let delay=0;
+  [...answer].forEach((ch,i)=>{
+    setTimeout(()=>{
+      // light up letter
+      letters.forEach(l=>{
+        l.classList.remove('lit');
+        if(l.textContent===ch){
+          l.classList.add('lit');
+          setTimeout(()=>l.classList.remove('lit'),600);
+        }
+      });
+      const span=document.createElement('span');
+      span.textContent=ch;
+      span.style.opacity='0';
+      span.style.transition='opacity 0.3s';
+      out.appendChild(span);
+      setTimeout(()=>span.style.opacity='1',50);
+      if(i===answer.length-1) triggerScare();
+    },delay);
+    delay+=400;
+  });
+}
+function ouijaClear(){
+  document.getElementById('ouija-output').innerHTML='<span style="color:#2a1500;letter-spacing:5px;font-family:\'Creepster\',cursive;">Savolni boshlang...</span>';
+}
+
+// RUNE CLICK
+function runeClick(el,icon,msg){
+  el.style.animation='rune-flash 0.1s infinite';
+  el.textContent=icon;
+  document.getElementById('ritual-text').textContent=msg;
+  document.getElementById('ritual-text').style.color='#cc0000';
+  setTimeout(()=>{
+    el.style.animation='';
+    document.getElementById('ritual-text').style.color='#3d0000';
+  },2000);
+  if(Math.random()>0.6) triggerScare();
+}
+
+// CURSOR HOVER EFFECTS
+document.querySelectorAll('.h-card,.story-card,.inv-card,.test-item,.g-item,.cta-btn,button,a').forEach(el=>{
+  el.addEventListener('mouseenter',()=>{
+    cur.style.transform='translate(-50%,-50%) scale(2.5)';
+    cur.style.borderColor='#ff6600';
+  });
+  el.addEventListener('mouseleave',()=>{
+    cur.style.transform='translate(-50%,-50%) scale(1)';
+    cur.style.borderColor='#ff0000';
+  });
+});
+
+// AUDIO
+let audioOn=false;
+document.addEventListener('click',()=>{
+  if(audioOn)return;
+  audioOn=true;
+  try{
+    const ac=new AudioContext();
+    [[40,0.018],[60,0.012],[80,0.008],[120,0.005]].forEach(([f,v])=>{
+      const o=ac.createOscillator(),g=ac.createGain();
+      o.type='sawtooth';o.frequency.value=f;g.gain.value=v;
+      o.connect(g);g.connect(ac.destination);o.start();
+      const lfo=ac.createOscillator(),lg=ac.createGain();
+      lfo.frequency.value=0.2+Math.random()*0.2;lg.gain.value=1.5;
+      lfo.connect(lg);lg.connect(o.frequency);lfo.start();
+    });
+    function beat(){
+      [60,55].forEach((f,i)=>{
+        const o=ac.createOscillator(),g=ac.createGain();
+        o.type='sine';o.frequency.value=f;
+        g.gain.value=0;
+        const t=ac.currentTime+i*0.25;
+        g.gain.setTargetAtTime(0.12,t,0.008);
+        g.gain.setTargetAtTime(0,t+0.12,0.04);
+        o.connect(g);g.connect(ac.destination);
+        o.start(t);o.stop(t+0.5);
+      });
+      setTimeout(beat,1200+Math.random()*400);
+    }
+    setTimeout(beat,3000);
+    // whisper-like noise
+    const buf=ac.createBuffer(1,ac.sampleRate*2,ac.sampleRate);
+    const data=buf.getChannelData(0);
+    for(let i=0;i<data.length;i++) data[i]=(Math.random()*2-1)*0.02;
+    function playWhisper(){
+      const src=ac.createBufferSource(),g=ac.createGain();
+      src.buffer=buf;g.gain.value=0.3;
+      src.connect(g);g.connect(ac.destination);
+      src.start();
+      setTimeout(playWhisper,8000+Math.random()*12000);
+    }
+    setTimeout(playWhisper,5000);
+  }catch(e){}
+},{once:false});
+</script>
+</body>
+</html>
